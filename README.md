@@ -258,11 +258,11 @@ MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
 
 #### IAM Roles Used
 
-<img width="1062" alt="image" src="">
+<img width="1075" alt="image" src="https://user-images.githubusercontent.com/1815429/235939504-8ad679ff-189f-4c20-94f4-8d0213efacdd.png">
 
 #### Env File in S3 Bucket
 
-<img width="1068" alt="image" src="">
+<img width="1092" alt="image" src="https://user-images.githubusercontent.com/1815429/235939799-88849436-60d9-4ecf-bbbf-dbc575877b3a.png">
 
 #### ECR hosting News ETL Kafka Producer Docker Image
 
@@ -270,11 +270,11 @@ MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
 
 #### Scheduled Task in ECS 
 
-<img width="1184" alt="image" src="">
+<img width="1255" alt="image" src="https://user-images.githubusercontent.com/1815429/235943697-f55dea23-784b-40ee-9db2-473b066fb76f.png">
 
 ### Screenshots of Raw Mediastack Datasets landed in Databricks Delta Table
 
-<img width="1440" alt="image" src="">
+<img width="1312" alt="image" src="https://user-images.githubusercontent.com/1815429/235946225-ee0fe007-a098-4e40-bb00-e7fed39a231a.png">
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -283,7 +283,7 @@ MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-An ETL data pipeline solution is essential for collecting, transforming, and loading data from various sources into a centralized repository. The pipeline benefits data analysts, data scientists, and other data consumers in several ways. It centralizes the data for easy accessibility, standardizes and ensures data quality, consistency, and accuracy, and automates the process of data transformation and scaling up as the data volume grows. Consequently, data consumers can quickly access high-quality, consistent, and easily accessible data for making informed decisions.
+An ETL data pipeline solution is essential for collecting, transforming, and loading data from various sources into a centralized repository. The pipeline benefits consumers of news in several ways. It centralizes the data for easy accessibility, standardizes and ensures data quality, consistency, and accuracy, and automates the process of data transformation and scaling up as the data volume grows. Consequently, data consumers can quickly access high-quality, consistent, and easily accessible data for making informed decisions.
  
 
  
