@@ -94,20 +94,24 @@ The objective of this project is to construct an ETL pipeline that is scalable a
 The team used a variety of tools in this project, including `Databricks`, `Kafka`, `Python`, `Git`, `Docker`, `AWS`, `Confluent Cloud`, `Great Expectations`, `PowerBI` and `Visual Studio`.
  
 
+* ![Python](https://a11ybadges.com/badge?logo=python) -- **`Python`** was used for developing custom scripts to perform data transformations and manipulation. Its powerful libraries, such as Pandas and NumPy, were utilized for data manipulation.
+
+
+* ![Git](https://a11ybadges.com/badge?logo=git)  -- **`Git`** was used for version control to manage the codebase and collaborate with other team members.
+
+
+* ![AWS](https://a11ybadges.com/badge?logo=amazonaws) -- **`AWS`** was used as the cloud platform to host the applications, store, and leverage various services for data hosting.
+
+
+* ![Databricks](https://a11ybadges.com/badge?logo=databricks) -- **`Databricks`** to perform transformations as the data is moved from bronze, to silver, to gold layers. Great Expectations test were also performed in the framework.
+
+
+* ![PowerBI](https://a11ybadges.com/badge?logo=powerbi) -- **`PowerBI`** was used for the semantic, reporting layer of the project to illustrate data visualization and present metrics.
+
+
 * ![Kafka](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) -- **`Kafka`** was used in extracting and loading of data to delta table in databricks of the ETL pipeline.
 
-
-* ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) -- **`Python`** was used for developing custom scripts to perform data transformations and manipulation. Its powerful libraries, such as Pandas and NumPy, were utilized for data manipulation.
-
-
-* ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)  -- **`Git`** was used for version control to manage the codebase and collaborate with other team members.
-
-
 * ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) -- **`Docker`** was used to create isolated environments for development, testing, and production, allowing for easy and efficient deployment of the applications.
-
-
-* ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white) -- **`AWS`** was used as the cloud platform to host the applications, store, and leverage various services for data hosting.
-
 
 * ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)  -- **`Visual Studio`** was used as the integrated development environment (IDE) to write and debug code, as well as to collaborate with other team members.
 
