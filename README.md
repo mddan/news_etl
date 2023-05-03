@@ -94,7 +94,7 @@ The objective of this project is to construct an ETL pipeline that is scalable a
 The team used a variety of tools in this project, including `Databricks`, `Kafka`, `Python`, `Git`, `Docker`, `AWS`, `Confluent Cloud`, `Great Expectations`, `PowerBI` and `Visual Studio`.
  
 
-* ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) -- **`Postgres`** was used as the primary database to store and manage the data extracted from the pipeline.
+* ![Kafka](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) -- **`Kafka`** was used in extracting and loading of data to delta table in databricks of the ETL pipeline.
 
 
 * ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) -- **`Python`** was used for developing custom scripts to perform data transformations and manipulation. Its powerful libraries, such as Pandas and NumPy, were utilized for data manipulation.
