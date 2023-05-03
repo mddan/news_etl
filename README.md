@@ -270,7 +270,7 @@ MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
 
 #### ECR hosting News ETL Kafka Producer Docker Image
 
-<img width="1103" alt="image" src="">
+<img width="1137" alt="image" src="https://user-images.githubusercontent.com/1815429/235957169-314b5b52-ebc9-42e0-aea1-8d20720dcf9d.png">
 
 #### Scheduled Task in ECS 
 
