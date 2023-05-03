@@ -197,36 +197,33 @@ _Below are the installation steps for setting up the job_board ETL app._
    ```
    set PYTHONPATH=%cd%
    ```
-5. Create a ```config.sh``` / ```config.bat``` file in ```src/job_board``` folder with following content 
+5. Create a ```config.sh``` / ```config.bat``` file in ```src/``` folder with following content 
 
    **Linux / Mac**
    ```
-   export api_key_id=<YOUR_JSEARCH_API_KEY>
-   export db_user=<YOUR_POSTGRES_DB_USERNAME>
-   export db_password=<YOUR_POSTGRES_DB_PASSWORD>
-   export db_server_name=<YOUR_POSTGRES_DB_SERVER_NAME>
-   export db_database_name=<YOUR_POSTGRES_DB_NAME>
-   export db_port=<YOUR_POSTGRES_DB_PORT>
+   export KAFKA_BOOTSTRAP_SERVERS=<YOUR_KAFKA_BOOTSTRAP_SERVER>
+   export KAFKA_SASL_USERNAME=<YOUR_KAFKA_USERNAME>
+   export KAFKA_SASL_PASSWORD=<YOUR_KAFKA_PASSWORD>
+   export KAFKA_TOPIC=<YOUR_KAFKA_TOPIC>
+   export MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
    ```
    
    **Windows**
    ```
-   SET api_key_id=<YOUR_JSEARCH_API_KEY>
-   SET db_user=<YOUR_POSTGRES_DB_USERNAME>
-   SET db_password=<YOUR_POSTGRES_DB_PASSWORD>
-   SET db_server_name=<YOUR_POSTGRES_DB_SERVER_NAME>
-   SET db_database_name=<YOUR_POSTGRES_DB_NAME>
-   SET db_port=<YOUR_POSTGRES_DB_PORT>
+   SET KAFKA_BOOTSTRAP_SERVERS=<YOUR_KAFKA_BOOTSTRAP_SERVER>
+   SET KAFKA_SASL_USERNAME=<YOUR_KAFKA_USERNAME>
+   SET KAFKA_SASL_PASSWORD=<YOUR_KAFKA_PASSWORD>
+   SET KAFKA_TOPIC=<YOUR_KAFKA_TOPIC>
+   SET MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
    ```
 6. Create a ```.env``` file with below contents in root project folder
 
 ```
-api_key_id=<YOUR_JSEARCH_API_KEY>
-db_user=<YOUR_POSTGRES_DB_USERNAME>
-db_password=<YOUR_POSTGRES_DB_PASSWORD>
-db_server_name=localhost
-db_database_name=job_board
-db_port=5432
+KAFKA_BOOTSTRAP_SERVERS=<YOUR_KAFKA_BOOTSTRAP_SERVER>
+KAFKA_SASL_USERNAME=<YOUR_KAFKA_USERNAME>
+KAFKA_SASL_PASSWORD=<YOUR_KAFKA_PASSWORD>
+KAFKA_TOPIC=<YOUR_KAFKA_TOPIC>
+MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
 ```
 
 ### Running Locally and in a Docker Container
@@ -235,70 +232,49 @@ db_port=5432
 
 1. CD into ```src/``` folder
 2. Run ```. ./set_python_path.sh``` / ```set_python_path.bat``` file according to your Operating System to set **PYTHONPATH**
-3. Run ```config.sh``` / ```config.bat``` file to set additional environment variables needed to connect to **JSEARCH API** and **POSTGRES DB**
+3. Run ```config.sh``` / ```config.bat``` file to set additional environment variables needed to connect to **MEDIASTACK API** and **KAFKA TOPIC**
 4. CD back to ```src/``` folder  
-5. Run ```python job_board/pipeline/job_board_pipeline.py``` to run the ETL pipeline locally.
-6. Alternatively instead of running steps 3 thru 5, we can run the ETL pipeline in docker container as follows. 
-7. From the root folder containing ```Dockerfile```, Run ```docker build -t job_board:1.0 .``` to create a docker image for Job Board ETL pipeline program
-8. Run a container using the above image using ```docker run --env-file=.env job_board:1.0``` to see the ETL pipeline in action.
+5. Run ```python news_etl/producer/mediastack_kafka_producer.py``` to run the Kafka Producer code locally.
+6. Alternatively instead of running steps 3 thru 5, we can run the Kafka producer pipeline in docker container as follows. 
+7. From the root folder containing ```Dockerfile```, Run ```docker build -t news_etl:1.0 .``` to create a docker image for News ETL pipeline's Kafka Producer component
+8. Run a container using the above image using ```docker run --env-file=.env news_etl:1.0``` to see the Kafka Producer part of the ETL pipeline in action.
 
 ### Running in AWS Cloud - Setup
 
 1. Create IAM roles as shown in image.
-2. Create an RDS Instance with public visibility, inbound and outbound connections setup.
-3. Upload the .env file containing the JSEARCH API Key and AWS RDS Connection Details to an AWS S3 Bucket.
-4. Create docker file and upload the Docker image to AWS ECR.
-5. Create a Cron Schedule in AWS ECS to run the pipeline in a recurring schedule.
+2. Upload the .env file containing the JSEARCH API Key and AWS RDS Connection Details to an AWS S3 Bucket.
+3. Create docker file and upload the Docker image to AWS ECR.
+4. Create a Cron Schedule in AWS ECS to run the Kafka producer pipeline in a recurring schedule.
+5. Query Mediastack API for latest news and push to Kafka Topic hosted in Confluent Cloud
+
+### Running in Databricks Workflow - Setup
+
+1. Databricks Streaming Kafka Consumer reads latest offsets from Kafka Topic and writes to raw_landing delta table.
+2. Databricks workflow transforms data and enrich source information in medallaion architecture layers of Bronze, Silver and Gold.
+3. This transformed data is fact and dimensional modeled, tested for data quality using great expectations
+4. The dimensional data is exposed as semantic layer using PowerBI.
 
 ### Screenshots of AWS Components Used
 
 #### IAM Roles Used
 
-<img width="1062" alt="image" src="https://user-images.githubusercontent.com/1815429/219292235-68866722-e034-4956-8a0e-5d11e916c3fa.png">
-
-#### RDS Database Instance
-
-<img width="1105" alt="image" src="https://user-images.githubusercontent.com/1815429/219291798-80016e01-22ba-48eb-9822-5043fa36cf51.png">
+<img width="1062" alt="image" src="">
 
 #### Env File in S3 Bucket
 
-<img width="1068" alt="image" src="https://user-images.githubusercontent.com/1815429/219292301-6e6e78cb-1315-4c24-a368-d0a2beab3017.png">
+<img width="1068" alt="image" src="">
 
-#### ECR hosting Job Board Docker Image
+#### ECR hosting News ETL Kafka Producer Docker Image
 
-<img width="1103" alt="image" src="https://user-images.githubusercontent.com/1815429/219292060-7fbb1595-00be-4ad0-80c2-a40c1f39cf1e.png">
+<img width="1103" alt="image" src="">
 
 #### Scheduled Task in ECS 
 
-<img width="1184" alt="image" src="https://user-images.githubusercontent.com/1815429/219291967-9170e0e6-5dc5-43b1-b69d-87b10e9f40fc.png">
+<img width="1184" alt="image" src="">
 
-### Screenshots of Datasets
+### Screenshots of Raw Mediastack Datasets landed in Databricks Delta Table
 
-#### Data Analyst Jobs Dataset
-
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/1815429/219293243-2a6c5465-feb2-408a-83c6-6b882c8fe419.png">
-
-#### Data Engineer Jobs Dataset
-
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/1815429/219293163-05dc94bb-5433-4677-93f1-715e1cbf2885.png">
-
-#### Data Scientist Jobs Dataset
-
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/1815429/219293048-fb79cf88-b441-4ad1-a645-af4a1b704849.png">
-
-### Screenshots of Metadata Logs
-
-#### Data Analyst Metadata Log
-
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/1815429/219292972-5fe8eee5-ec24-45d7-921a-b1fc04755a9f.png">
-
-#### Data Engineer Metadata Log
-
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/1815429/219292846-8622fa47-9ab7-4554-ba31-002c44fce703.png">
-
-#### Data Scientist Metadata Log
-
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/1815429/219292701-0e88fe5e-dcd9-448f-b970-85f822575301.png">
+<img width="1440" alt="image" src="">
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -318,31 +294,26 @@ An ETL data pipeline solution is essential for collecting, transforming, and loa
 <!-- ROADMAP -->
 ## Roadmap
 
-- [X] **`Data extraction:`**
+- [X] **`Data extraction and loading:`**
     - [X] Set up API for data extraction 
-    - [X] Retrieve the Jobs data from the API using a suitable extraction method (API calls)
-    - [X] Set up live data update and incremental extract 
+    - [X] Retrieve the News Data from the Mediastack API using a suitable extraction method (API calls)
+    - [X] Set up Kafka Producer and Consumer to incrementally extract and load data to Databricks Delta tables
 - [X] **`Data transformation:`**
     - [X] Clean the raw data to ensure it is in the desired format (e.g., removing duplicates, handling missing values, etc.).
     - [X] Use the following transformation techniques :  renaming columns, joining, grouping, typecasting, data filtering, sorting, and aggregating 
-    - [X] Filter the data only to include the desired jobs (e.g., data analyst, data engineer, and data scientist).
     - [X] Transform the data into a structured format (e.g., converting to a tabular form or creating a data model).
-- [X] **`Data loading:`**
-    - [X] Create the necessary tables and schemas in the Postgres database to store the data
-    - [X] Load the transformed data into the database.
-    - [X] Use an efficient data loading method (e.g., upsert, etc.) to populate the database.
-    - [X] Set up Incremental and upsert load
+    - [X] Exposing this dimenisional modeled data as semantic layer to PowerBI
 - [X] **`Create a data Pipeline`**
     - [X] Build a docker image using a Dockerfile
     - [X] Test that the Docker container is runing locally
 - [X] **`Incremental extraction and loading:`**
-    - [X] Set up a process to regularly extract new data from the API and update the database with the latest information.
-    - [X] Ensure that the incremental process is designed to handle large amounts of data and maintain the integrity and accuracy of the information.
-- [X] **`Implement unit tests`**
-    - [X] Write pipeline metadata logs to a database table
-- [X] **`Data Hosting :`**
-    - [X] Host the database on AWS
-    - [X] Use AWS services (e.g., RDS, EC2, S3, ECR, ECS etc.) to ensure the robustness and reliability of the pipeline.
+    - [X] Kafka producer regularly extract newly available news data from the API and update the Kafka Topic with the latest information.
+    - [X] Ensure that the Kakfa Consumer Databricks Streaming App always reads from latest checkpoints and lands latest data in databricks delta table
+- [X] **`Implement Great Expectation tests`**
+    - [X] Write Great Expectation Tests for the Data Transformation layer in Databricks workflow.
+- [X] **`Cloud Hosting :`**
+    - [X] Host the Kafka Consumer on AWS, Kafka Topic in Confluent Cloud
+    - [X] Use AWS services (e.g., EC2, S3, ECR, ECS etc.) to ensure the robustness and reliability of the Kafka Producer pipeline.
 
  
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
