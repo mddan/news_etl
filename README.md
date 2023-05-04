@@ -209,26 +209,8 @@ _Below are the installation steps for setting up the job_board ETL app._
    ```
    set PYTHONPATH=%cd%
    ```
-5. Create a ```config.sh``` / ```config.bat``` file in ```src/``` folder with following content 
-
-   **Linux / Mac**
-   ```
-   export KAFKA_BOOTSTRAP_SERVERS=<YOUR_KAFKA_BOOTSTRAP_SERVER>
-   export KAFKA_SASL_USERNAME=<YOUR_KAFKA_USERNAME>
-   export KAFKA_SASL_PASSWORD=<YOUR_KAFKA_PASSWORD>
-   export KAFKA_TOPIC=<YOUR_KAFKA_TOPIC>
-   export MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
-   ```
    
-   **Windows**
-   ```
-   SET KAFKA_BOOTSTRAP_SERVERS=<YOUR_KAFKA_BOOTSTRAP_SERVER>
-   SET KAFKA_SASL_USERNAME=<YOUR_KAFKA_USERNAME>
-   SET KAFKA_SASL_PASSWORD=<YOUR_KAFKA_PASSWORD>
-   SET KAFKA_TOPIC=<YOUR_KAFKA_TOPIC>
-   SET MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
-   ```
-6. Create a ```.env``` file with below contents in root project folder
+5. Create a ```.env``` file with below contents in root project folder
 
 ```
 KAFKA_BOOTSTRAP_SERVERS=<YOUR_KAFKA_BOOTSTRAP_SERVER>
@@ -254,7 +236,7 @@ MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
 ### Running in AWS Cloud - Setup
 
 1. Create IAM roles as shown in image.
-2. Upload the .env file containing the JSEARCH API Key and AWS RDS Connection Details to an AWS S3 Bucket.
+2. Upload the .env file containing the MEDIASTACK API Key and KAFKA Connection details to an AWS S3 Bucket.
 3. Create docker file and upload the Docker image to AWS ECR.
 4. Create a Cron Schedule in AWS ECS to run the Kafka producer pipeline in a recurring schedule.
 5. Query Mediastack API for latest news and push to Kafka Topic hosted in Confluent Cloud
