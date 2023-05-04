@@ -2,10 +2,10 @@
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
-TOPIC = <YOUR_KAFKA_TOPIC>
-KAFKA_BROKER = <YOUR_KAFKA_BROKER>
-confluentApiKey = <YOUR_KAFKA_USERNAME>
-confluentSecret = <YOUR_KAFKA_PASSWORD>
+TOPIC = dbutils.secrets.get("NewsEtlSecretBucket", "KafkaTopic")
+KAFKA_BROKER = dbutils.secrets.get("NewsEtlSecretBucket", "KafkaBroker")
+confluentApiKey = dbutils.secrets.get("NewsEtlSecretBucket", "ConfluentApiKey")
+confluentSecret = dbutils.secrets.get("NewsEtlSecretBucket", "ConfluentApiSecret")
 deltaTablePath = <YOUR_DELTA_TABLE_PATH>
 checkpointPath = <YOUR_DELTA_CHECKPOINT_PATH>
 
