@@ -1,8 +1,3 @@
-# news_etl
-News ETL CAPSTONE project for Data Engineering Bootcamp
-
-
- 
 
 ## **Project Name: NEWS ETL Project**
 
