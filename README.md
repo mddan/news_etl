@@ -149,7 +149,7 @@ The team used a variety of tools in this project, including `Databricks`, `Kafka
 <!-- ARCHITECTURE -->
 ## Architechture
 
-<img width="1103" alt="image" src="">
+![image](https://user-images.githubusercontent.com/29958551/236192166-9ab73525-17a2-436a-b4d3-0763b9ff3a70.png)
 
 
 ### ETL Pipeline Steps
