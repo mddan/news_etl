@@ -137,7 +137,7 @@ The team used a variety of tools in this project, including `Databricks`, `Kafka
 <!-- PROJECT CONTEXT -->
 ## Project Context
 
-<p>News travels fast. We would like to create a news/article ETL that provides real-time information to consumers about breaking world events, and other areas of news interest. Consumers of your data: Average daily news consumers
+<p>News travels fast. We would like to create a news/article ETL that provides real-time information to consumers about breaking world events, and other areas of news interest. Consumers of the data would be Average daily news consumers
 </p>
 
 
