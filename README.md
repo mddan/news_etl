@@ -258,7 +258,7 @@ MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
 3. This transformed data is fact and dimensional modeled, tested for data quality using great expectations
 4. The dimensional data is exposed as semantic layer using PowerBI.
 
-### Screenshots of AWS Components Used
+### Screenshots of AWS Components for ECS (Kafka Producer) Used
 
 #### IAM Roles Used
 
@@ -275,6 +275,13 @@ MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
 #### Scheduled Task in ECS 
 
 <img width="1255" alt="image" src="https://user-images.githubusercontent.com/1815429/235943697-f55dea23-784b-40ee-9db2-473b066fb76f.png">
+
+
+#### Kafka Cluster and Broker
+<img width="545" alt="image" src="https://user-images.githubusercontent.com/1815429/236193491-69ea492e-ebe4-4824-a42d-792ee881c63c.png">
+<img width="881" alt="image" src="https://user-images.githubusercontent.com/1815429/236193607-79d81a8f-abd8-4ee7-90d6-95c5c93692b7.png">
+<img width="1186" alt="image" src="https://user-images.githubusercontent.com/1815429/236193798-4ffa00df-b9a0-4ac6-8b7c-2947c0554cd3.png">
+
 
 ### Screenshots of Raw Mediastack Datasets landed in Databricks Delta Table
 
