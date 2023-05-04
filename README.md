@@ -60,12 +60,6 @@ News ETL CAPSTONE project for Data Engineering Bootcamp
       <ul>
         <li><a href="#screenshots-of-components-used">Screenshots of Components Used</a></li>
       </ul>
-      <ul>
-        <li><a href="#screenshots-of-datasets">Screenshots of Datasets</a></li>
-      </ul>
-      <ul>
-        <li><a href="#screenshots-of-metadata-logs">Screenshots of Metadata Logs</a></li>
-      </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -180,11 +174,7 @@ _This project requires following softwares, packages and tools._
 
   1. **Python 3.8.16** to write the **NEWS_ETL** ETL pipeline code
   2. **Docker** to containerize the **NEWS_ETL** KAFKA Consumer Portion of the ETL pipeline application
-  3. **AWS** to host the KAFKA Producer Portion of the **NEWS_ETL** ETL Pipeline application
-  4. **Confluent Cloud** that hosts the Kafka Broker
-  5. **Databricks Spark Streaming Job** that acts as a KAFKA Consumer reading from the Kafka Topic
-  6. **Databricks Workflow** that does the data transformation steps
-  7. **PowerBI** that acts as the semantic layer
+  3. **AWS** to host KAFKA Consumer Portion of the **NEWS_ETL** ETL Pipeline application
 
   
 ### Installation
@@ -270,7 +260,7 @@ MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
 3. This transformed data is fact and dimensional modeled, tested for data quality using great expectations
 4. The dimensional data is exposed as semantic layer using PowerBI.
 
-### Screenshots of AWS Components Used
+### Screenshots of Components Used
 
 #### IAM Roles Used
 
