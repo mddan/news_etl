@@ -108,9 +108,7 @@ The team used a variety of tools in this project, including `Databricks`, `Kafka
 <!-- GOAls -->
 ## Goals
 
-<p>Building a live and incremental data pipeline solution is to provide a system that can process and deliver data to consumers as quickly as possible. By leveraging real-time data processing, data can be continuously ingested and transformed, ensuring that the data is always up-to-date and available to data consumers with minimal latency. This pipeline solution allows data consumers to work with the most recent data, which is especially important in fast-paced business environments, where real-time data can make all the difference in making critical decisions.</p>
-
-<p>The incremental approach that a live and incremental data pipeline solutions utilize also allows for the seamless addition of new data sources, as the system can be designed to identify and ingest new data automatically. This feature ensures that the system is scalable and can handle large amounts of data with minimal impact on performance. Overall, building a live and incremental data pipeline solution aims to create a scalable, reliable, and high-performing data processing system that enables data consumers to make informed decisions based on the latest data available.</p>
+<p>This live and incremental data pipeline solution enables news data to be processed and delivered to consumers as quickly as possible. By utilizing real-time data processing, breaking news can be continuously ingested and transformed, ensuring that the latest developments are always available to news consumers with minimal delay. This pipeline solution also allows for the seamless addition of new data sources, ensuring that the system is scalable and can handle large volumes of news data. The ultimate objective is to create a reliable and high-performing news processing system that empowers consumers to stay informed and make knowledgeable decisions based on the most up-to-date news available.</p>
 
 
 
