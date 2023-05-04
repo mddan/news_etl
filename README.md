@@ -169,7 +169,11 @@ _This project requires following softwares, packages and tools._
 
   1. **Python 3.8.16** to write the **NEWS_ETL** ETL pipeline code
   2. **Docker** to containerize the **NEWS_ETL** KAFKA Consumer Portion of the ETL pipeline application
-  3. **AWS** to host KAFKA Consumer Portion of the **NEWS_ETL** ETL Pipeline application
+  3. **AWS** to host KAFKA Producer Portion of the **NEWS_ETL** ETL Pipeline application
+  4. **Confluent Cloud** acts as Kafka Broker hosting the topic
+  5. **Databricks Streaming Job** acts as a Kafka Consumer reading from Kafka topic to write to delta table
+  6. **Databricks Workflow** to transform raw mediastack data landed in delta tables to Bronze, Silver and Gold Layers
+  7. **PowerBI** acts as Semantic Layer to expose the business metrics based on transformed data.
 
   
 ### Installation
