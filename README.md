@@ -58,7 +58,7 @@ News ETL CAPSTONE project for Data Engineering Bootcamp
         <li><a href="#running-in-aws-cloud---setup">Running in AWS Cloud - Setup</a></li>
       </ul>
       <ul>
-        <li><a href="#screenshots-of-aws-components-used">Screenshots of AWS Components Used</a></li>
+        <li><a href="#screenshots-of-components-used">Screenshots of Components Used</a></li>
       </ul>
       <ul>
         <li><a href="#screenshots-of-datasets">Screenshots of Datasets</a></li>
@@ -82,7 +82,7 @@ News ETL CAPSTONE project for Data Engineering Bootcamp
 ## About The Project
 
 
-The objective of this project is to construct an ETL pipeline that is scalable and efficient enough to extract news data from mediastack API in an incremental manner. The project necessitates a solution capable of handling voluminous data and guaranteeing the accuracy and integrity of the data. To achieve the project objective, we are using Kafka as a producer running as an AWS ECS Service to read data from the mediastack API and push it to a Kafka topic hosted in Confluent Cloud. This topic is then consumed by a Spark Streaming Kafka Consumer to load data into delta tables in Databricks, completing the Extract and Load step of ELT. Subsequently, the raw data is transformed using the medallion architecture steps of Bronze, Silver, and Gold, and data quality during the transformation steps is ensured by leveraging the Great Expectations Library. Data modeling techniques such as dimensional modeling and one big table are applied to the transformed data. PowerBI is used as the Semantic Layer to expose the transformed data in Databricks. The entire solution is hosted in the clouds (AWS, Confluent Cloud and Databricks) providing scalability, robustness, and reliability.  
+The objective of this project is to construct an ETL pipeline that is scalable and efficient enough to extract news data from mediastack API in an incremental manner. The project necessitates a solution capable of handling voluminous data and guaranteeing the accuracy and integrity of the data. To achieve the project objective, we are using Kafka as a producer to read data from the mediastack API and push it to a Kafka topic. This topic is then consumed by a Spark Streaming Kafka Consumer to load data into delta tables in Databricks, completing the Extract and Load step of ELT. Subsequently, the raw data is transformed using the medallion architecture steps of Bronze, Silver, and Gold, and data quality during the transformation steps is ensured by leveraging the Great Expectations Library. Data modeling techniques such as dimensional modeling and one big table are applied to the transformed data. Finally, the entire solution is hosted in the cloud, providing scalability, robustness, and reliability. 
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -209,8 +209,26 @@ _Below are the installation steps for setting up the job_board ETL app._
    ```
    set PYTHONPATH=%cd%
    ```
+5. Create a ```config.sh``` / ```config.bat``` file in ```src/``` folder with following content 
+
+   **Linux / Mac**
+   ```
+   export KAFKA_BOOTSTRAP_SERVERS=<YOUR_KAFKA_BOOTSTRAP_SERVER>
+   export KAFKA_SASL_USERNAME=<YOUR_KAFKA_USERNAME>
+   export KAFKA_SASL_PASSWORD=<YOUR_KAFKA_PASSWORD>
+   export KAFKA_TOPIC=<YOUR_KAFKA_TOPIC>
+   export MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
+   ```
    
-5. Create a ```.env``` file with below contents in root project folder
+   **Windows**
+   ```
+   SET KAFKA_BOOTSTRAP_SERVERS=<YOUR_KAFKA_BOOTSTRAP_SERVER>
+   SET KAFKA_SASL_USERNAME=<YOUR_KAFKA_USERNAME>
+   SET KAFKA_SASL_PASSWORD=<YOUR_KAFKA_PASSWORD>
+   SET KAFKA_TOPIC=<YOUR_KAFKA_TOPIC>
+   SET MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
+   ```
+6. Create a ```.env``` file with below contents in root project folder
 
 ```
 KAFKA_BOOTSTRAP_SERVERS=<YOUR_KAFKA_BOOTSTRAP_SERVER>
@@ -236,7 +254,7 @@ MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
 ### Running in AWS Cloud - Setup
 
 1. Create IAM roles as shown in image.
-2. Upload the .env file containing the MEDIASTACK API Key and KAFKA Connection details to an AWS S3 Bucket.
+2. Upload the .env file containing the JSEARCH API Key and AWS RDS Connection Details to an AWS S3 Bucket.
 3. Create docker file and upload the Docker image to AWS ECR.
 4. Create a Cron Schedule in AWS ECS to run the Kafka producer pipeline in a recurring schedule.
 5. Query Mediastack API for latest news and push to Kafka Topic hosted in Confluent Cloud
@@ -269,6 +287,14 @@ MEDIASTACK_ACCESS_KEY=<YOUR_MEDIASTACK_API_ACCESS_KEY>
 ### Screenshots of Raw Mediastack Datasets landed in Databricks Delta Table
 
 <img width="1312" alt="image" src="https://user-images.githubusercontent.com/1815429/235946225-ee0fe007-a098-4e40-bb00-e7fed39a231a.png">
+
+### Screenshot of Databricks Delta Load Workflow 
+
+![image](https://user-images.githubusercontent.com/29958551/236195857-ab9068c0-ffd4-4867-8148-9545964a0d57.png)
+
+### Screenshot of PowerBI Headlines Dashboard
+
+![image](https://user-images.githubusercontent.com/29958551/236196100-10a523c4-d6db-4141-abb0-e0fd8d6acb4b.png)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
